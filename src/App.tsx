@@ -494,7 +494,7 @@ function Home() {
         <div className={`truth-bar ${mode === 'ai' ? 'cloud' : ''}`}>
           {mode === 'ai' ? (
             <>
-              <span><Cloud aria-hidden="true" /> Se sube a RunPod una copia WebP reducida solo al iniciar.</span>
+              <span><Cloud aria-hidden="true" /> Se sube temporalmente una copia WebP reducida solo al iniciar.</span>
               <span>Sin página pública ni almacenamiento permanente del sitio.</span>
             </>
           ) : (
@@ -516,7 +516,7 @@ function InfoSections() {
     <section className="content-grid">
       <article>
         <h2>Superresolución con IA</h2>
-        <p>La IA en la nube usa Real-ESRGAN para crear una salida 2x. Alta calidad aplica un paso 4x y vuelve a 2x con una mezcla conservadora; Rápido usa un modelo 2x más ligero.</p>
+        <p>La IA en la nube crea una salida 2x. Alta calidad prioriza el detalle y Rápido reduce el tiempo de espera.</p>
       </article>
       <article>
         <h2>Qué puede cambiar</h2>
@@ -524,7 +524,7 @@ function InfoSections() {
       </article>
       <article>
         <h2>Privacidad por modo</h2>
-        <p>El modo local permanece en tu navegador. La IA en la nube envía una copia reducida y sin metadatos a Vercel y RunPod; no crea resultados públicos.</p>
+        <p>El modo local permanece en tu navegador. La IA en la nube envía una copia reducida y sin metadatos solo después de pulsar el botón; no crea resultados públicos.</p>
       </article>
     </section>
   )
