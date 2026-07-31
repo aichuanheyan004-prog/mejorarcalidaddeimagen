@@ -36,9 +36,9 @@ Browser-local traditional processing: `build`. It is free at the margin, private
 
 Browser-side ML: `postpone`. ONNX/WebGPU/WASM could work later, but requires model license review, package size testing, CDN/bandwidth review, mobile memory testing, and quality benchmarks before public claims.
 
-RunPod Serverless + ComfyUI/Real-ESRGAN: `test small later`. The existing `aisharpenimage` work shows a plausible Real-ESRGAN route for model-assisted 2x, with strict input limits and no durable storage. It is not enabled here at launch because shared prepaid balance, cross-site quota limits, cold starts, support burden, and abuse cost need measured demand from this Spanish tool first.
+RunPod Serverless + ComfyUI/Real-ESRGAN: `test small now`, approved by the user on 2026-07-31 using only the existing RunPod account balance. Cloud AI uses the already verified public Worker image and two fixed workflows: High Quality runs `RealESRGAN_x4plus`, downsamples to 2x, and blends 85% AI detail with 15% Lanczos; Fast uses `RealESRGAN_x2plus` with the same conservative blend. Neither mode is face restoration, true deblur, or forensic recovery.
 
-Shared endpoint vs independent endpoint: shared endpoint reduces setup and uses existing prepaid balance, but two Vercel projects cannot form a reliable cross-site spend ledger. Independent endpoint improves isolation, capacity controls, rollback, and abuse attribution but risks new fixed or prepaid cost and needs user confirmation. No additional recharge, auto-pay, active worker, object storage, or paid model is authorized.
+Shared endpoint vs independent endpoint: launch uses the existing shared endpoint with Active workers 0, Max workers 1, 5-second idle timeout, fixed immutable Worker image, and no network volume. At low traffic, sharing improves the chance of a warm/FlashBoot Worker and avoids new capacity. At concurrent traffic, one Worker becomes a queue bottleneck. Create an independent endpoint only after p95 queue delay exceeds 20-30 seconds or busy/timeouts exceed 5%; that change can nearly double peak spend and requires a new confirmation. Two Vercel projects still cannot form a reliable cross-site spend ledger.
 
 ## Reference Repo Review
 
@@ -54,23 +54,23 @@ Not adopted: outpainting workflow, branding, visual design, pricing, screenshots
 
 ## Risk And Cost
 
-Launch cost: local processing only, so no GPU/storage/payment marginal cost beyond hosting. No login or payment at launch.
+Launch cost: local processing remains free at the margin. Cloud AI consumes the existing RunPod prepaid balance; the balance observed on 2026-07-31 before this integration was USD 9.88, Auto-Pay was visibly Disabled, current spend rate was USD 0/hour, and the shared endpoint had Active 0 / Max 1. No recharge, automatic payment, object storage, database, active Worker, paid closed model, login, or end-user payment is enabled.
 
 Official RunPod pricing checked in the browser on 2026-07-31: Serverless worker groups were listed at about USD 0.58/hour for 16 GB, USD 0.69/hour for the 24 GB L4/A5000/3090 group, USD 1.10/hour for 24 GB 4090 PRO, and USD 1.22/hour for the 48 GB A6000/A40 group. The pricing page also offers per-second display. Source: `https://www.runpod.io/pricing`. Prices and GPU availability can change and must be captured again on the day Cloud AI is enabled.
 
-Future Cloud AI cost model must be measured before enablement. The values below are compute only and exclude Vercel execution, ingress/egress, failed requests, storage, logs, payment fees, refunds, tax, and support:
+Cloud AI cost model. The values below are compute only and exclude Vercel execution, ingress/egress, failed requests, storage, logs, tax, and support:
 
 - Optimistic: hot 16 GB worker, 10 billed seconds: `0.58 / 3600 * 10 = USD 0.0016` per success.
 - Base: 24 GB worker, 45 billed seconds: `0.69 / 3600 * 45 = USD 0.0086` per success. At a 10% billable failure rate, effective compute per success is about USD 0.0096 before overhead.
 - Pessimistic: 4090 PRO, 300 billed seconds: `1.10 / 3600 * 300 = USD 0.0917` per attempt. One automatic billable retry would double that to USD 0.1833, which is why automatic retry after worker start is forbidden.
 
-Controls required before Cloud AI: true MIME decode, 12 MB local limit, smaller AI derivative around 1 MP/1.25 MB, max edge limits, reject image bombs, reject animation/unsupported alpha if model path cannot preserve it, metadata stripping, explicit upload action, no automatic retry after billable start, timeout/cancel, origin allowlist, per-IP/device quotas, queue cap, outstanding job cap, provider balance manual review, no content logging, temporary results only, no public result pages, privacy disclosure, NSFW/illegal-use terms, and a manual budget fuse.
+Implemented controls: true MIME decode, 12 MB local limit, AI derivative capped at 1 MP/1.25 MB/1600 px edge, Sharp image-bomb limit, animation and non-opaque alpha rejection, metadata stripping, explicit upload action, fixed workflow/model allowlist, no automatic retry after billable start, 300-second timeout/cancel, origin and `Sec-Fetch-Site` checks, salted-IP best-effort allowance, one outstanding job per Vercel runtime, shared endpoint Max workers 1, no content or filename logging, temporary provider results only, no public result pages, privacy/terms disclosure, and the prepaid balance as the cash fuse.
 
 Residual risk: distributed proxies can bypass Vercel instance-local limits. RunPod prepaid balance and disabled auto-pay are the reliable cash fuse; app limits are availability controls, not a hard billing ledger. If multiple sites share a RunPod balance, manual balance checks and conservative concurrency are mandatory.
 
 ## Payment Path
 
-Current: no login, no payment, no ads. This keeps upload friction low and avoids selling unverified GPU capacity.
+Current: Cloud AI beta is free to the user with no login, payment, or ads. The user explicitly authorized paid RunPod calls from the existing balance, but no recharge. This keeps first-use friction low while quality, latency, download rate, abuse, and cost per successful image are measured.
 
 Later, if traffic and value are proven: accounts, Stripe checkout, credits, batches, larger files, 4x/high-quality models, priority queue, private history, API, and commercial workflow plans. Before activation: tax/refund policy, fraud/chargeback handling, privacy changes, support load, GPU/storage/bandwidth cost, durable rate limits, and stop thresholds. The proposed architecture and gates are in `docs/future-auth-payments.md`.
 
@@ -98,7 +98,7 @@ Launch metrics: page views, tool starts, valid files, processing success/failure
 
 7-day review: production status, HTTPS/redirects, sitemap/GSC processing, console errors, mobile usability, upload/complete/download rate, and SERP queries.
 
-30-day review: non-brand query impressions, country/device mix, local completion rate, demand for AI/2x/deblur, abuse signals, and whether Cloud AI economics justify a controlled beta.
+30-day review: non-brand query impressions, country/device mix, local versus Cloud AI completion/download rate, p50/p95 queue and execution time, abuse signals, cost per successful image, and whether accounts/credits/Stripe are justified.
 
 Stop or postpone Cloud AI if median successful cost exceeds USD 0.05, failure rate exceeds 20% over 20 jobs, provider billing differs from expected numbers, prepaid balance drains unexpectedly, or privacy/retention cannot be disclosed accurately.
 

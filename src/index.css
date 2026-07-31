@@ -133,6 +133,24 @@ h2 svg,
   margin-bottom: 18px;
 }
 
+.mode-switch {
+  width: min(520px, 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+
+.mode-switch button {
+  min-width: 0;
+}
+
+.mode-switch .active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--accent-2);
@@ -251,6 +269,8 @@ p {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  transform: scale(var(--zoom, 1));
+  transform-origin: center;
 }
 
 .empty-preview {
@@ -276,6 +296,18 @@ p {
   clip-path: inset(0 calc(100% - var(--split)) 0 0);
 }
 
+.compare-line {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: var(--split);
+  width: 2px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(30, 39, 41, 0.42);
+  pointer-events: none;
+}
+
 .controls-panel h2 {
   display: flex;
   align-items: center;
@@ -292,6 +324,10 @@ p {
 .control span {
   color: var(--muted);
   font-size: 14px;
+}
+
+.compact-control {
+  margin-bottom: 0;
 }
 
 input[type="range"] {
@@ -321,6 +357,37 @@ select {
   border-color: var(--accent);
 }
 
+.quality-switch {
+  margin-top: 0;
+}
+
+.mode-note {
+  min-height: 76px;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.mode-note svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.fine-print {
+  margin: 10px 0 14px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .truth-bar {
   margin-top: 12px;
   display: flex;
@@ -334,6 +401,34 @@ select {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+.truth-bar.cloud {
+  color: #485a5c;
+}
+
+.result-facts {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.result-facts div {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.result-facts dt {
+  color: var(--muted);
+}
+
+.result-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .content-grid,
@@ -406,6 +501,10 @@ select {
 
   .tool-shell {
     padding: 14px;
+  }
+
+  .mode-switch {
+    width: 100%;
   }
 
   .panel {

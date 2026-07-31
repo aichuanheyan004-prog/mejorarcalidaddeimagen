@@ -167,7 +167,12 @@ export async function decodeImage(file: File): Promise<ImageInfo> {
   assertSupportedFile(file)
   validateFileSignature(new Uint8Array(await file.arrayBuffer()), file.type)
   const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' })
-  validateDimensions(bitmap.width, bitmap.height)
+  try {
+    validateDimensions(bitmap.width, bitmap.height)
+  } catch (error) {
+    bitmap.close()
+    throw error
+  }
   const hasAlpha = file.type === 'image/png' || file.type === 'image/webp'
   return { file, bitmap, width: bitmap.width, height: bitmap.height, hasAlpha }
 }

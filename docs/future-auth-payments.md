@@ -1,6 +1,6 @@
 # Future Authentication And Payments
 
-Status: design only. No account, database, payment, paid storage, analytics vendor, or Cloud AI infrastructure is enabled at launch.
+Status: authentication and payments are design only. A free Cloud AI beta now uses the existing prepaid RunPod balance, but there is still no account, database, checkout, paid storage, analytics vendor, credit ledger, or end-user payment.
 
 ## Activation Gates
 
@@ -21,7 +21,7 @@ Before implementation, require all of the following:
 - Webhooks: verify Stripe signatures, store the event ID, and process each event idempotently. Refunds and chargebacks create reversing ledger entries.
 - Credits: append-only ledger with reason, amount, currency/product source, job ID, and idempotency key. Never maintain balance as a client-writable counter.
 - Jobs: separate user, payment, entitlement, job, and result records. A paid order does not mean a GPU job succeeded.
-- Files: signed, short-lived upload and result URLs only after Cloud AI is approved. Private buckets, no public galleries, metadata stripping, minimum retention, and deletion jobs are mandatory.
+- Files: the beta uses request/response payloads with no object store. Any future paid history or batch workflow requires signed short-lived URLs, private buckets, no public galleries, metadata stripping, minimum retention, and deletion jobs.
 - API: separate API keys, quotas, origin controls, per-user concurrency, and an account-wide spend cap. Browser fingerprinting can supplement but never replace account/IP limits.
 
 ## Purchase Flow
