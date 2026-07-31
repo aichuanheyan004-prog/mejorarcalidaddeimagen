@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía para mejorar la calidad de una imagen</title>
+  <meta name="description" content="Aprende cuándo usar nitidez, reducción de ruido, ampliación, superresolución y deblur sin prometer detalles imposibles.">
+  <link rel="canonical" href="https://www.mejorarcalidaddeimagen.net/guide">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static.css">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Guía para mejorar la calidad de una imagen">
+  <meta property="og:description" content="Diferencias prácticas entre nitidez, ruido, JPEG, ampliación, impresión y desenfoque.">
+  <meta property="og:url" content="https://www.mejorarcalidaddeimagen.net/guide">
+  <meta property="og:image" content="https://www.mejorarcalidaddeimagen.net/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/">Mejorar Calidad de Imagen</a><nav aria-label="Navegación principal"><a href="/guide">Guía</a><a href="/privacy">Privacidad</a><a href="/terms">Términos</a></nav></header>
+  <main class="document">
+    <h1>Guía para mejorar la calidad de una imagen</h1>
+    <p>Primero identifica el problema: falta de nitidez, ruido, artefactos JPEG, baja resolución o desenfoque real. Cada caso necesita un ajuste distinto.</p>
+    <h2>Nitidez y halos</h2>
+    <p>La nitidez aumenta el contraste alrededor de bordes que ya existen. Sube el control poco a poco y retrocede cuando aparezcan líneas claras u oscuras, dientes de sierra o textura demasiado dura. Esos halos no son detalle recuperado.</p>
+    <h2>Ruido y artefactos JPEG</h2>
+    <p>Reducir un poco el ruido antes de enfocar evita amplificar el granulado. Un ajuste excesivo borra piel, tela, pelo y papel. JPEG usa compresión con pérdida: guardar muchas veces o con baja calidad puede añadir bloques y bordes artificiales que la nitidez hace más visibles.</p>
+    <h2>Ampliar, escalar y superresolución</h2>
+    <p>Escalar a 2x crea más píxeles por interpolación, pero no recupera información fiable que nunca llegó al archivo. Los modelos de superresolución estiman texturas a partir de patrones aprendidos; pueden producir una imagen convincente y, a la vez, inventar letras, pelo o detalles finos.</p>
+    <h2>Foto borrosa y deblur</h2>
+    <p>Una foto movida o fuera de foco no siempre mejora con nitidez. El deblur necesita modelos especializados y depende del tipo y la intensidad del movimiento. No debe usarse como restauración forense ni como prueba de identidad.</p>
+    <h2>Formato de salida y transparencia</h2>
+    <p>WebP suele equilibrar calidad y peso. JPEG funciona bien para fotografías y no conserva transparencia; esta herramienta coloca un fondo blanco al exportar áreas transparentes. PNG conserva transparencia y gráficos nítidos, aunque suele pesar más.</p>
+    <h2>Preparar una imagen para imprimir</h2>
+    <p>Los píxeles disponibles y el tamaño físico determinan la resolución de impresión. Aumentar el valor de ppp sin crear píxeles no añade detalle. Revisa la imagen al tamaño final, conserva un original sin sobrescribir y pide al servicio de impresión su perfil y resolución recomendados.</p>
+    <p><a href="/">Abrir la herramienta para mejorar una foto</a></p>
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Fuentes técnicas</h2>
+      <ul>
+        <li><a href="https://helpx.adobe.com/photoshop/using/adjusting-image-sharpness-blur.html" rel="noreferrer">Adobe: ajuste de nitidez y desenfoque</a></li>
+        <li><a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000017.shtml" rel="noreferrer">Library of Congress: formato JPEG y compresión</a></li>
+        <li><a href="https://www.w3.org/TR/png-3/" rel="noreferrer">W3C: especificación PNG</a></li>
+        <li><a href="https://helpx.adobe.com/photoshop/using/image-size-resolution.html" rel="noreferrer">Adobe: tamaño y resolución de imagen</a></li>
+        <li><a href="https://arxiv.org/abs/2107.10833" rel="noreferrer">Real-ESRGAN: artículo técnico de superresolución</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer"><span>© 2026 Mejorar Calidad de Imagen</span><a href="/privacy">Privacidad</a><a href="/terms">Términos</a></footer>
+</body>
+</html>
