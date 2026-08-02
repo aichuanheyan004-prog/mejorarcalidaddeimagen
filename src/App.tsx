@@ -88,6 +88,7 @@ function Header() {
       </a>
       <nav aria-label="Navegación principal">
         <a href="/guide">Guía</a>
+        <a href="/blog">Blog</a>
         <a href="/privacy">Privacidad</a>
         <a href="/terms">Términos</a>
       </nav>
@@ -590,6 +591,7 @@ function Footer() {
     <footer className="site-footer">
       <span>© 2026 Mejorar Calidad de Imagen</span>
       <a href="/guide">Guía</a>
+      <a href="/blog">Blog</a>
       <a href="/privacy">Privacidad</a>
       <a href="/terms">Términos</a>
     </footer>
