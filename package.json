@@ -9,6 +9,8 @@
     "typecheck": "tsc -b",
     "lint": "eslint . && oxlint",
     "test": "vitest run",
+    "indexnow": "node scripts/submit-indexnow.mjs",
+    "indexnow:live": "node scripts/submit-indexnow.mjs --live",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
